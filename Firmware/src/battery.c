@@ -92,10 +92,10 @@ _attribute_ram_code_ uint16_t get_battery_mv(void)
 
 _attribute_ram_code_ uint8_t get_battery_level(uint16_t battery_mv)
 {
-	uint8_t battery_level = (battery_mv - 2200) / (31 - 22);
+	uint8_t battery_level = (battery_mv - 2900) / (42 - 29);  // 2.9V~4.2V for Li-ion battery
 	if (battery_level > 100)
 		battery_level = 100;
-	if (battery_mv < 2200)
+	if (battery_mv < 2900)
 		battery_level = 0;
 	return battery_level;
 }

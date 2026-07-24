@@ -231,12 +231,15 @@ _attribute_ram_code_ uint8_t EPD_BWR_296_Display(unsigned char *image, int size,
     EPD_WriteData(0x28);
     EPD_WriteData(0x01);
 
-    EPD_WriteCmd(0x26);
+    // ===== ★ 仅在全局刷新时清除红色通道 ★ =====
     int i;
-    for (i = 0; i < size; i++)
-    {
-        EPD_WriteData(0x00);
+    if (full_or_partial) {
+        EPD_WriteCmd(0x26);
+        for (i = 0; i < size; i++) {
+            EPD_WriteData(0x00);
+        }
     }
+    // ==========================================
 
     if (!full_or_partial)
     {
@@ -249,7 +252,11 @@ _attribute_ram_code_ uint8_t EPD_BWR_296_Display(unsigned char *image, int size,
 
     // Display update control
     EPD_WriteCmd(0x22);
-    EPD_WriteData(0xC7);
+    if (full_or_partial) {
+        EPD_WriteData(0xC4);   // 全刷 + 红色清除
+    } else {
+        EPD_WriteData(0xC7);   // 局刷，不干扰红色
+    }
 
     // Master Activation
     EPD_WriteCmd(0x20);
