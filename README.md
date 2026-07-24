@@ -1,5 +1,22 @@
-# TL;DR
 
+### 按照自己喜好修改了样式 时钟模式1为日历 目前支持M3N特别批次和原项目不支持的新版Stellar-M
+
+> 我的Stellar-M批次为101915 屏幕型号 <br>
+> <img width="1280" height="1280" alt="StellarMBack" src="https://github.com/user-attachments/assets/4e4969a4-7d77-4966-b741-b61bb825a904" />
+> <img width="1280" height="1280" alt="StellarMFPC" src="https://github.com/user-attachments/assets/49bf3f22-40c3-4940-82b8-2b0724cad8da" />
+> <img width="1280" height="1280" alt="StellarMEPD" src="https://github.com/user-attachments/assets/b7aaf57e-fdf8-4455-beee-b6fc9c847115" />
+
+
+> 我的M3N批次:<img width="2098" height="1139" alt="M3NANOTHER3" src="https://github.com/user-attachments/assets/1eb849e4-a670-4303-91a4-24ffdb42ee84" />
+
+
+Stellar-M其他批次有DEPT的屏幕 主控可能为UC8251
+<img width="1280" height="1280" alt="STELLARM_unknow" src="https://github.com/user-attachments/assets/b3425f17-6240-43c3-a7f8-6c999203b6ce" />
+
+### 显示效果在Release里 随便说一下目前老化的屏幕不建议在屏幕上画很粗的线条 
+### 会导致那部分区域损坏 尤其是目前的那几个固件(没有批评的意思，我的屏老化使用才会这样) 也是因此重写了样式
+
+# TL;DR
 > **Warning** <br>
 > This firmweare may include high battery usage.
 
