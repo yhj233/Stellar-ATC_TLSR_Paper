@@ -18,6 +18,8 @@ RAM uint8_t battery_level;
 RAM uint16_t battery_mv;
 RAM int16_t temperature;
 
+RAM uint8_t last_minute = 100;
+
 // Settings
 extern settings_struct settings;
 
@@ -55,7 +57,12 @@ _attribute_ram_code_ void main_loop(void)
         ble_send_temp(EPD_read_temp() * 10);
     }
 
-    epd_update(get_time(), battery_mv, temperature);
+        struct date_time now = get_time();
+    if (now.tm_min != last_minute || epd_needs_forced_update())
+    {
+        last_minute = now.tm_min;
+        epd_update(now, battery_mv, temperature);
+    }
 
     if (epd_state_handler()) // if epd_update is ongoing enable gpio wakeup to put the display to sleep as fast as possible
     {

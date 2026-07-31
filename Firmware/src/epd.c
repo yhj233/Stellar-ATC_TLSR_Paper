@@ -42,7 +42,7 @@ RAM uint8_t offset_index = 0;
 // ============== EPD Model Selection ==============
 // 手动选择墨水屏型号，跳过自动检测
 // 0 = 自动检测, 1 = BW213, 2 = BWR213, 3 = BWR154, 4 = BW213_M3N, 5 = BWR296, 6 = BW250122(UC8251D,停用), 7 = BW213_M
-#define EPD_FORCE_MODEL 7
+#define EPD_FORCE_MODEL 4
 
 // ============== Lunar Calendar ==============
 // Lunar year info: {year, new_year_month, new_year_day, month_days_bits, leap_month}
@@ -258,6 +258,10 @@ void set_EPD_scene(uint8_t scene)
 
 void set_EPD_wait_flush() {
     epd_wait_update = 1;
+}
+
+uint8_t epd_needs_forced_update(void) {
+    return epd_wait_update;
 }
 
 // Here we detect what E-Paper display is connected

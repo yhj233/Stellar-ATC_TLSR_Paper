@@ -17,6 +17,7 @@ uint8_t epd_state_handler(void);
 void epd_display_char(uint8_t data);
 void epd_clear(void);
 
+uint8_t epd_needs_forced_update(void);
 void update_time_scene(struct date_time _time, uint16_t battery_mv, int16_t temperature, void (*scene)(struct date_time, uint16_t, int16_t,  uint8_t));
 void epd_update(struct date_time _time, uint16_t battery_mv, int16_t temperature);
 
