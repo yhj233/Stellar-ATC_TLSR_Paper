@@ -26,9 +26,9 @@ extern settings_struct settings;
 _attribute_ram_code_ void user_init_normal(void)
 {                            // this will get executed one time after power up
     random_generator_init(); // must
+    init_flash();
     init_time();
     init_ble();
-    init_flash();
     init_nfc();
 
     // epd_display_tiff((uint8_t *)bart_tif, sizeof(bart_tif));
@@ -57,7 +57,7 @@ _attribute_ram_code_ void main_loop(void)
         ble_send_temp(EPD_read_temp() * 10);
     }
 
-        struct date_time now = get_time();
+    struct date_time now = get_time();
     if (now.tm_min != last_minute || epd_needs_forced_update())
     {
         last_minute = now.tm_min;

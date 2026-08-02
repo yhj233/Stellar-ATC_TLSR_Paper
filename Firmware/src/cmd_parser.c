@@ -71,4 +71,8 @@ void cmd_parser(void * p){
 	else if(inData == 0xE2){// force set an EPD scene
 		set_EPD_wait_flush();
 	}
+	else if(inData == 0xED){// Set time calibration (time_trime), 2 bytes: high, low
+		settings.time_trime = (req->dat[1] << 8) | req->dat[2];
+		save_settings_to_flash();
+	}
 }

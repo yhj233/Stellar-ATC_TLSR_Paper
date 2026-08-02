@@ -37,6 +37,7 @@ void reset_settings_to_default(void)
 	settings.measure_interval = 10;
 	settings.temp_offset = 0;
 	settings.temp_alarm_point = 5;
+	settings.time_trime = 5000;
 }
 
 void save_settings_to_flash(void)
