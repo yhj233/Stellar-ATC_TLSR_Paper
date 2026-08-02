@@ -5,9 +5,9 @@
 #include "epd.h"
 #include "epd_spi.h"
 #include "epd_bw_213.h"
-#include "epd_bwr_213.h"
+//#include "epd_bwr_213.h"
 #include "epd_bw213_m3n.h"
-#include "epd_bwr_296.h"
+//#include "epd_bwr_296.h"
 // #include "epd_bw_uc8251.h"     // UC8251D 停用中
 #include "epd_bw213_m.h"   // SSD1680 BW 122x250
 #include "drivers.h"
@@ -174,7 +174,7 @@ static void draw_lunar_date(OBDISP *obd, int x, int y, int lm, int ld) {
 static void draw_calendar_grid(OBDISP *obd, int x, int y, int year, int month, int today) {
     char buff[4];
     uint8_t cb[2];
-    int cell_w = 22, cell_h = 18;
+    int cell_w = 22, cell_h = 17;
     static const uint8_t hdr[] = {0x07,0x01,0x02,0x03,0x04,0x05,0x06}; // 日一二三四五六
     static const int dim_tab[13] = {0,31,28,31,30,31,30,31,31,30,31,30,31};
 
@@ -279,19 +279,11 @@ _attribute_ram_code_ void EPD_detect_model(void)
     WaitMs(10);
 
     // Here we neeed to detect it
-    if (EPD_BWR_296_detect())
+    /*if (EPD_BWR_296_detect())
     {
         epd_model = 5;
     }
-    else if (EPD_BWR_213_detect())
-    {
-        epd_model = 2;
-    }
-//    else if (EPD_BWR_154_detect())// Right now this will never trigger, the 154 is same to 213BWR right now.
-//    {
-//        epd_model = 3;
-//    }
-    else if (EPD_BW213_M3N_detect())
+    else */if (EPD_BW213_M3N_detect())
     {
         epd_model = 4;
     }
@@ -323,11 +315,11 @@ _attribute_ram_code_ uint8_t EPD_read_temp(void)
 
     if (epd_model == 1)
         epd_temperature = EPD_BW_213_read_temp();
-    else if (epd_model == 2)
-        epd_temperature = EPD_BWR_213_read_temp();
+    /*else if (epd_model == 2)
+        epd_temperature = EPD_BWR_213_read_temp();*/
 //    else if (epd_model == 3)
 //        epd_temperature = EPD_BWR_154_read_temp();
-    else if (epd_model == 4 || epd_model == 5)
+    else if (epd_model == 4 /*|| epd_model == 5*/)
         epd_temperature = EPD_BW213_M3N_read_temp();
     else if (epd_model == 7)
         epd_temperature = EPD_BW213_M_read_temp();
@@ -356,14 +348,14 @@ _attribute_ram_code_ void EPD_Display(unsigned char *image, unsigned char *red_i
 
     if (epd_model == 1)
         epd_temperature = EPD_BW_213_Display(image, size, full_or_partial);
-    else if (epd_model == 2)
-        epd_temperature = EPD_BWR_213_Display(image, size, full_or_partial);
+    /*else if (epd_model == 2)
+        epd_temperature = EPD_BWR_213_Display(image, size, full_or_partial);*/
 //    else if (epd_model == 3)
 //        epd_temperature = EPD_BWR_154_Display(image, size, full_or_partial);
     else if (epd_model == 4)
-        epd_temperature = EPD_BW213_M3N_Display(image, size, full_or_partial);
-    else if (epd_model == 5)
-        epd_temperature = EPD_BWR_296_Display_BWR(image, red_image, size, full_or_partial);
+        epd_temperature = EPD_BW213_M3N_Display_BWR(image, red_image, size, full_or_partial);
+    /*else if (epd_model == 5)
+        epd_temperature = EPD_BWR_296_Display_BWR(image, red_image, size, full_or_partial);*/
         //epd_temperature = EPD_BWR_296_Display(image, size, full_or_partial);
     else if (epd_model == 7)
         epd_temperature = EPD_BW213_M_Display(image, size, full_or_partial);
@@ -379,8 +371,8 @@ _attribute_ram_code_ void epd_set_sleep(void)
 
     if (epd_model == 1)
         EPD_BW_213_set_sleep();
-    else if (epd_model == 2)
-        EPD_BWR_213_set_sleep();
+    /*else if (epd_model == 2)
+        EPD_BWR_213_set_sleep();*/
 //    else if (epd_model == 3)
 //        EPD_BWR_154_set_sleep();
     else if (epd_model == 4 || epd_model == 5)
